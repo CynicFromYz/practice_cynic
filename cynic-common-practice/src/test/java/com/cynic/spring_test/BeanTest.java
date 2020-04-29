@@ -1,7 +1,10 @@
 package com.cynic.spring_test;
 
+import com.cynic.service.CynicPracticeService;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +17,10 @@ import java.io.InputStream;
 public class BeanTest {
     public static void main(String[] args) throws IOException {
         Resource resource = new ClassPathResource("bean-test.xml");
-        InputStream inputStream = resource.getInputStream();
+//        InputStream inputStream = resource.getInputStream();
+        XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(resource);
+        CynicPracticeService cynicPracticeService = (CynicPracticeService) xmlBeanFactory.getBean("cynicPracticeService");
+        cynicPracticeService.sayHello();
 
     }
 }

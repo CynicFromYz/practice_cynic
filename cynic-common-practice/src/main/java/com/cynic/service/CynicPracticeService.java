@@ -6,4 +6,5 @@ package com.cynic.service;
  * @createTime 2020/4/29 15:15
  */
 public interface CynicPracticeService {
+    void sayHello();
 }

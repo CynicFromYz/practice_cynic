@@ -6,4 +6,8 @@ package com.cynic.service;
  * @createTime 2020/4/29 15:16
  */
 public class CynicPracticeImpl implements CynicPracticeService{
+    @Override
+    public void sayHello() {
+        System.out.println("hello world!");
+    }
 }
