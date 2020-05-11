@@ -55,12 +55,9 @@ public class ComplexDistributeLock {
             SortedSet<String> lessNodeSet = nodeSet.headSet(node);
             if (!lessNodeSet.isEmpty()) {
                 String lastNode = lessNodeSet.last();
-                zooKeeper.exists(lastNode, new Watcher() {
-                    @Override
-                    public void process(WatchedEvent watchedEvent) {
-                        if (Event.EventType.NodeDeleted.equals(watchedEvent.getType())) {
-                            countDownLatch.countDown();
-                        }
+                zooKeeper.exists(lastNode, watchedEvent -> {
+                    if (Watcher.Event.EventType.NodeDeleted.equals(watchedEvent.getType())) {
+                        countDownLatch.countDown();
                     }
                 });
             }
