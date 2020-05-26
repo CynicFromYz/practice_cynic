@@ -14,7 +14,9 @@
 	<name>practice</name>
 
 	<modules>
-		<module>cynic-common-practice</module>
+		<module>cynic-netty-practice</module>
+		<module>cynic-zookeeper-practice</module>
+		<module>cynic-leetcode-practice</module>
 	</modules>
 	<description>Demo project for Spring Boot</description>
 
