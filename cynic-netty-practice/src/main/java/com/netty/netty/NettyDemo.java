@@ -1,8 +1,7 @@
 package com.netty.netty;
 
 import com.sun.org.apache.xpath.internal.operations.String;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import io.netty.buffer.*;
 
 /**
  * @author cynic
@@ -12,5 +11,10 @@ import io.netty.buffer.Unpooled;
  */
 public class NettyDemo {
 
+    public static void main(String[] args) {
+        UnpooledHeapByteBuf heapByteBuf;
+        PooledByteBufAllocator.DEFAULT.directArenas();
+        UnpooledByteBufAllocator.DEFAULT.directBuffer();
+    }
 
 }
