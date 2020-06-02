@@ -2,13 +2,11 @@ package com.netty.netty.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.ServerSocketChannel;
 import io.netty.channel.socket.SocketChannel;
+import org.apache.log4j.net.SocketServer;
 
 /**
  * @author cynic
@@ -36,6 +34,13 @@ public class NettyEchoServer {
         serverBootstrap.option(ChannelOption.SO_KEEPALIVE, true);
         serverBootstrap.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
         //5.绑定入站处理器
+//        serverBootstrap.handler(new ChannelInitializer<ServerSocketChannel>() {
+//            @Override
+//            protected void initChannel(ServerSocketChannel ch) throws Exception {
+//                ch.pipeline().addLast(new ChannelOutboundHandler() {
+//                });
+//            }
+//        });
         serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
