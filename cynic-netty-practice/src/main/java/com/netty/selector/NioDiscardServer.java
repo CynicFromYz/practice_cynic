@@ -37,7 +37,7 @@ public class NioDiscardServer {
             while (keyIterator.hasNext()) {
                 //8.获取单个的键,并处理
                 SelectionKey selectionKey = keyIterator.next();
-                //9.判断key的具体时间
+                //9.判断key的具体事件
                 if (selectionKey.isAcceptable()) {
                     //10.若选择的键的IO事件是[连接就绪]事件,就获取客户端连接
                     SocketChannel socketChannel = serverSocketChannel.accept();
