@@ -17,6 +17,7 @@
 		<module>cynic-netty-practice</module>
 		<module>cynic-zookeeper-practice</module>
 		<module>cynic-leetcode-practice</module>
+		<module>cynic-netty-chat</module>
 	</modules>
 	<description>Demo project for Spring Boot</description>
 
