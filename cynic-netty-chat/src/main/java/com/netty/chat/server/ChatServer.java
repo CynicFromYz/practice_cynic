@@ -42,7 +42,6 @@ public class ChatServer {
                             sc.pipeline().addLast(new WebSocketServerProtocolHandler("/im"));
                             sc.pipeline().addLast(new WebSocketHandler());
 
-
                         }
                     }).option(ChannelOption.SO_BACKLOG, 128).childOption(ChannelOption.SO_KEEPALIVE, true);
             //sync 阻塞该线程
