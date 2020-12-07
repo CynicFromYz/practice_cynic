@@ -61,12 +61,37 @@ public class IMProcessor {
                 channel.writeAndFlush(new TextWebSocketFrame(text));
             }
         } else if (IMP.FLOWER.getName().equals(msgRequest.getCmd())) {
-//            msgRequest.setSender(nickName);
-//            msgRequest.set
-//            for (Channel channel : onlineUsers) {
-//                String text = encoder.encode(msgRequest);
-//                channel.writeAndFlush(new TextWebSocketFrame(text));
-//            }
+            JSONObject attrs = getAttrs(client);
+            long currTime = System.currentTimeMillis();
+            if (null != attrs) {
+                long lastTime = attrs.getLongValue("lastFlowerTime");
+                //10s内不允许重复刷鲜花
+                int seconds = 10;
+                long sub = currTime - lastTime;
+                if (sub < 1000 * seconds) {
+                    msgRequest.setSender("you");
+                    msgRequest.setCmd(IMP.SYSTEM.getName());
+                    msgRequest.setContent("您送鲜花太频繁," + (seconds - Math.round(sub / 1000) + "后可再次送花!"));
+                    String content = encoder.encode(msgRequest);
+                    client.writeAndFlush(new TextWebSocketFrame(content));
+                    return;
+                }
+            }
+            //正常送花
+            for (Channel channel : onlineUsers) {
+                if (channel == client) {
+                    msgRequest.setSender("you");
+                    msgRequest.setContent("你送了大家一波鲜花雨");
+                    //设置最后一次刷鲜花的时间,刷鲜花不能太频繁
+                    setAttrs(client, "lastFlowerTime", currTime);
+                } else {
+                    msgRequest.setSender(nickName);
+                    msgRequest.setContent(nickName + "送来一波鲜花!");
+                }
+                msgRequest.setTime(System.currentTimeMillis());
+                String content = encoder.encode(msgRequest);
+                channel.writeAndFlush(new TextWebSocketFrame(content));
+            }
         }
 
     }
@@ -81,5 +106,11 @@ public class IMProcessor {
 
     public JSONObject getAttrs(Channel client) {
         return client.attr(ATTRS).get();
+    }
+
+    public void setAttrs(Channel client, String key, long currTime) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(key, currTime);
+        client.attr(ATTRS).set(jsonObject);
     }
 }
