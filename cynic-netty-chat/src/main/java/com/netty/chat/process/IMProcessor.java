@@ -96,6 +96,11 @@ public class IMProcessor {
 
     }
 
+    public void process(Channel client, IMMessage msg) {
+        process(client, encoder.encode(msg));
+    }
+
+
     public void logout(Channel client) {
         onlineUsers.remove(client);
     }

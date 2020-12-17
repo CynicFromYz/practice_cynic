@@ -1,6 +1,9 @@
 package com.netty.chat.server;
 
+import com.netty.chat.protocol.IMDecoder;
+import com.netty.chat.protocol.IMEncoder;
 import com.netty.chat.server.handler.HttpHandler;
+import com.netty.chat.server.handler.SocketHandler;
 import com.netty.chat.server.handler.WebSocketHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -28,13 +31,18 @@ public class ChatServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel sc) throws Exception {
-                            //所有自定义的义务从这里开始
+                            //所有自定义的业务从这里开始
+
+                            //********支持自定义Socket协议*********//
+                            sc.pipeline().addLast(new IMDecoder());
+                            sc.pipeline().addLast(new IMEncoder());
+                            sc.pipeline().addLast(new SocketHandler());
 
                             //********支持http协议*********//
                             /*解码和编码http请求*/
                             sc.pipeline().addLast(new HttpServerCodec());
                             sc.pipeline().addLast(new HttpObjectAggregator(64 * 1024));
-                            //用于处理文件流的一个handler
+                            //用于处理文件流的一个handler 主要用来处理大文件
                             sc.pipeline().addLast(new ChunkedWriteHandler());
                             sc.pipeline().addLast(new HttpHandler());
 
