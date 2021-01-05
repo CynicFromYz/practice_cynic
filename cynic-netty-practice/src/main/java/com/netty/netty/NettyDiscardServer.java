@@ -37,7 +37,7 @@ public class NettyDiscardServer {
         //4.设置通道的参数
         serverBootstrap.option(ChannelOption.SO_KEEPALIVE, true);
         serverBootstrap.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-         //5.装配子通道流水线
+        //5.装配子通道流水线
         serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
             //有连接到达时会创建一个通道
             @Override
@@ -50,7 +50,7 @@ public class NettyDiscardServer {
         //6.开始绑定服务器
         //通过调用sync同步方法阻塞直到绑定成功
         ChannelFuture channelFuture = serverBootstrap.bind().sync();
-        System.out.println("服务器启动成功,监听端口:"+channelFuture.channel().localAddress());
+        System.out.println("服务器启动成功,监听端口:" + channelFuture.channel().localAddress());
         //7.等待通道关闭的异步任务结束
         //服务监听通道会一直等待通道关闭的异步任务结束
         ChannelFuture closeFuture = channelFuture.channel().closeFuture();

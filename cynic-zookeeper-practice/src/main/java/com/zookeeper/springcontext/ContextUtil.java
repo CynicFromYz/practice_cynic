@@ -23,8 +23,7 @@ public class ContextUtil implements ApplicationContextAware {
         return applicationContext.getBean(clazz);
     }
 
-    public void setContext(ApplicationContext context)
-    {
+    public void setContext(ApplicationContext context) {
         ContextUtil.applicationContext = context;
     }
 

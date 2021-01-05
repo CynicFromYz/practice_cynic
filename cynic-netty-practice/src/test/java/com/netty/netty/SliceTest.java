@@ -17,7 +17,7 @@ public class SliceTest {
         System.out.println("动作:分配 ByteBuf(9,100)");
         buffer.writeBytes(new byte[]{1, 2, 3, 4});
         System.out.println("动作:写入4个字节(1,2,3,4)");
-        ByteBuf slice = buffer.slice(0,2);
+        ByteBuf slice = buffer.slice(0, 2);
         buffer.retain();
         byte[] array = new byte[slice.readableBytes()];
         slice.getBytes(slice.readerIndex(), array);

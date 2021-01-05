@@ -20,7 +20,7 @@ public class NioServer {
         try {
             this.port = port;
             inetSocketAddress = new InetSocketAddress(this.port);
-            ServerSocketChannel serverChannel  = ServerSocketChannel.open();
+            ServerSocketChannel serverChannel = ServerSocketChannel.open();
             serverChannel.bind(inetSocketAddress);
             //默认为阻塞,手动设置为非阻塞
             serverChannel.configureBlocking(false);

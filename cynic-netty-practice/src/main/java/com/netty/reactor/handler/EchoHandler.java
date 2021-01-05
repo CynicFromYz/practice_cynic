@@ -6,7 +6,7 @@ package com.netty.reactor.handler;
  * @describe todo
  * @createTime 2020/5/26 15:54
  */
-public class EchoHandler implements Runnable{
+public class EchoHandler implements Runnable {
 
     @Override
     public void run() {

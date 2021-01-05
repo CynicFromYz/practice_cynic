@@ -25,7 +25,7 @@ public class NettyEchoServer {
         EventLoopGroup bossLoopGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerLoopGroup = new NioEventLoopGroup(1);
         //反应器线程组
-        serverBootstrap.group(bossLoopGroup,workerLoopGroup);
+        serverBootstrap.group(bossLoopGroup, workerLoopGroup);
         //通道类型
         serverBootstrap.channel(ServerSocketChannel.class);
         //3.设置监听端口
@@ -50,7 +50,7 @@ public class NettyEchoServer {
         //6.开始绑定服务器
         //通过调用sync同步方法阻塞直到绑定成功
         ChannelFuture channelFuture = serverBootstrap.bind().sync();
-        System.out.println("服务器启动成功,监听端口:"+channelFuture.channel().localAddress());
+        System.out.println("服务器启动成功,监听端口:" + channelFuture.channel().localAddress());
         //7.等待通道关闭的异步任务结束
         //服务监听通道会一直等待通道关闭的异步任务结束
         ChannelFuture closeFuture = channelFuture.channel().closeFuture();

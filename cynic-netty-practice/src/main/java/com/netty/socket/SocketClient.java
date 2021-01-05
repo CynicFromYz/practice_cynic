@@ -39,7 +39,7 @@ public class SocketClient {
 //        intBuffer.
         intBuffer.compact();
         System.out.println(intBuffer.get());
-        Channel channel = new NioChannel(new SocketBufferHandler(5,5,true));
+        Channel channel = new NioChannel(new SocketBufferHandler(5, 5, true));
         ByteBuffer byteBuffer = ByteBuffer.allocate(10);
         ByteBuffer byteBuffer2 = ByteBuffer.wrap(new byte[10]);
 

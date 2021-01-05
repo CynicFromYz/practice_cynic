@@ -5,8 +5,8 @@ import org.I0Itec.zkclient.ZkClient;
 
 /**
  * @author cynic
- * @describe master选举器
  * @version 1.0
+ * @describe master选举器
  * @createTime 2020/5/12 8:42
  */
 public class MasterSelector {

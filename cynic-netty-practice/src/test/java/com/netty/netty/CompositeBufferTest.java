@@ -31,8 +31,8 @@ public class CompositeBufferTest {
         compositeByteBuf.release();
         compositeByteBuf = ByteBufAllocator.DEFAULT.compositeBuffer();
         //消息体2
-        bodyBuf = Unpooled.copiedBuffer("hello cynic",UTF_8);
-        compositeByteBuf.addComponents(headerBuf,bodyBuf);
+        bodyBuf = Unpooled.copiedBuffer("hello cynic", UTF_8);
+        compositeByteBuf.addComponents(headerBuf, bodyBuf);
         sendMsg(compositeByteBuf);
         compositeByteBuf.release();
 

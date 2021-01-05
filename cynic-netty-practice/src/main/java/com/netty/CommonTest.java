@@ -18,11 +18,11 @@ public class CommonTest {
         set.add("3");
         set.add("4");
         Iterator<String> iterator = set.iterator();
-        while (iterator.hasNext()){
-            if("1".equals(iterator.next())){
+        while (iterator.hasNext()) {
+            if ("1".equals(iterator.next())) {
                 iterator.remove();
             }
         }
-        set.stream().forEach(a-> System.out.println(a));
+        set.stream().forEach(a -> System.out.println(a));
     }
 }

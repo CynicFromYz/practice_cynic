@@ -40,7 +40,7 @@ public class WriteReadTest {
     //读字节,不改变指针
     private void getByteBuf(ByteBuf byteBuf) {
         for (int i = 0; i < byteBuf.readableBytes(); i++) {
-            System.out.println("读一个字节："+byteBuf.getByte(i));
+            System.out.println("读一个字节：" + byteBuf.getByte(i));
         }
     }
 }

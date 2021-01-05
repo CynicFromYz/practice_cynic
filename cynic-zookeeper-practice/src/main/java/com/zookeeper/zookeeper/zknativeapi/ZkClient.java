@@ -24,7 +24,7 @@ public class ZkClient {
     private ZkClient() {
     }
 
-    public static ZooKeeper getZkInstance() throws Exception{
+    public static ZooKeeper getZkInstance() throws Exception {
         if (zooKeeper == null) {
             synchronized (ZkClient.class) {
                 if (zooKeeper == null) {

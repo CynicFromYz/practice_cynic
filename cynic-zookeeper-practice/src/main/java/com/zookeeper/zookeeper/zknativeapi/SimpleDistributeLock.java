@@ -26,15 +26,15 @@ public class SimpleDistributeLock {
             return;
         }
         boolean hasGetLock = tryLock();
-        if(hasGetLock){
+        if (hasGetLock) {
             System.out.println("获取锁成功...");
-        }else {
+        } else {
             System.out.println("获取锁失败...");
         }
         try {
             zooKeeper.close();
         } catch (InterruptedException e) {
-            logger.error("zooKeeper关闭异常,message:{}",e.getMessage());
+            logger.error("zooKeeper关闭异常,message:{}", e.getMessage());
         }
     }
 

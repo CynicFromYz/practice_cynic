@@ -13,12 +13,14 @@ import java.util.concurrent.*;
 public class FutureDemo {
 
     public static final int SLEEP_GAP = 500;
-    public static String getCurrentThreadName(){
+
+    public static String getCurrentThreadName() {
         return Thread.currentThread().getName();
     }
-    private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5,20,5000, TimeUnit.MILLISECONDS,new ArrayBlockingQueue(50));
 
-    static class HotWaterJob implements Callable<Boolean>{
+    private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 20, 5000, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(50));
+
+    static class HotWaterJob implements Callable<Boolean> {
 
         @Override
         public Boolean call() throws Exception {
@@ -33,7 +35,7 @@ public class FutureDemo {
         }
     }
 
-    static class WashJob implements Callable<Boolean>{
+    static class WashJob implements Callable<Boolean> {
 
         @Override
         public Boolean call() throws Exception {
@@ -48,27 +50,27 @@ public class FutureDemo {
         }
     }
 
-    public static void drinkTea(boolean isWaterOk,boolean isCupOk){
-        if(isWaterOk&&isCupOk){
+    public static void drinkTea(boolean isWaterOk, boolean isCupOk) {
+        if (isWaterOk && isCupOk) {
             System.out.println("喝茶了");
-        }else if (!isWaterOk){
+        } else if (!isWaterOk) {
             System.out.println("没有水");
-        }else if(!isCupOk){
+        } else if (!isCupOk) {
             System.out.println("没有杯子");
         }
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         FutureTask<Boolean> hotWaterFuture = new FutureTask<>(new HotWaterJob());
-        Thread waterThread = new Thread(hotWaterFuture,"Thread-烧水");
+        Thread waterThread = new Thread(hotWaterFuture, "Thread-烧水");
         FutureTask<Boolean> washFuture = new FutureTask<>(new WashJob());
-        Thread washThread = new Thread(washFuture,"Thread-清洗");
+        Thread washThread = new Thread(washFuture, "Thread-清洗");
         waterThread.start();
         washThread.start();
         Thread.currentThread().setName("主线程");
         boolean waterOk = hotWaterFuture.get();
         boolean cupOk = washFuture.get();
-        drinkTea(waterOk,cupOk);
+        drinkTea(waterOk, cupOk);
         System.out.println("运行结束");
     }
 

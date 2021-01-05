@@ -13,12 +13,12 @@ public class TestLock {
     public static Object lockObj = new Object();
 
     public static void main(String[] args) throws InterruptedException {
-        executors2.submit(()->{
+        executors2.submit(() -> {
             try {
-                while (true){
+                while (true) {
                     TimeUnit.SECONDS.sleep(1);
                     CuxiaoStatic.pri();
-                    synchronized (CuxiaoStatic.lockObj){
+                    synchronized (CuxiaoStatic.lockObj) {
                         System.out.println("XXXXXXXXXXXXXXXXXXXXXXX");
                     }
                 }
@@ -39,11 +39,11 @@ public class TestLock {
 
     }
 
-    private void getM(Integer a){
+    private void getM(Integer a) {
 
     }
 
-    private String getM(String a){
+    private String getM(String a) {
         return "";
     }
 }

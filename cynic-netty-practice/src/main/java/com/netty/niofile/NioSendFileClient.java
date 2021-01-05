@@ -28,13 +28,13 @@ public class NioSendFileClient {
         FileOutputStream fos = new FileOutputStream(file);
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         FileChannel fileChannel = fos.getChannel();
-        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1",8099);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", 8099);
         SocketChannel socketChannel = SocketChannel.open(inetSocketAddress);
         socketChannel.configureBlocking(false);
-        while(!socketChannel.finishConnect()){
+        while (!socketChannel.finishConnect()) {
             System.out.println("建立连接中.....");
         }
-        while (fileChannel.read(byteBuffer)!=-1){
+        while (fileChannel.read(byteBuffer) != -1) {
             byteBuffer.flip();
             socketChannel.write(byteBuffer);
             byteBuffer.clear();

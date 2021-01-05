@@ -30,7 +30,7 @@ public class EchoServerReactor implements Runnable {
                 selector.select();
                 Set<SelectionKey> keySet = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = keySet.iterator();
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     SelectionKey selectionKey = iterator.next();
                     dispatch(selectionKey);
                 }

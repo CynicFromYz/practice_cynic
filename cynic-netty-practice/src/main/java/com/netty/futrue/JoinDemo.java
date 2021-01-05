@@ -11,16 +11,17 @@ import java.util.concurrent.FutureTask;
  */
 public class JoinDemo {
     public static final int SLEEP_GAP = 500;
-    public static String getCurrentThreadName(){
+
+    public static String getCurrentThreadName() {
         return Thread.currentThread().getName();
     }
 
-    static class HotWaterThread extends Thread{
-        public HotWaterThread(){
+    static class HotWaterThread extends Thread {
+        public HotWaterThread() {
             super("Thread--烧水");
         }
 
-        public void run(){
+        public void run() {
             System.out.println("洗好水壶---");
             System.out.println("灌上凉水---");
             System.out.println("放在火上---");
@@ -34,11 +35,12 @@ public class JoinDemo {
         }
     }
 
-    static class WashThread extends Thread{
-        public WashThread(){
+    static class WashThread extends Thread {
+        public WashThread() {
             super("Thread--清洗");
         }
-        public void run(){
+
+        public void run() {
             System.out.println("洗茶壶---");
             System.out.println("洗茶杯---");
             System.out.println("拿茶叶---");

@@ -12,6 +12,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ChatClient {
@@ -19,11 +20,11 @@ public class ChatClient {
     private String host;
     private int port;
 
-    public ChatClient(String nickName){
+    public ChatClient(String nickName) {
         this.clientHandler = new ChatClientHandler(nickName);
     }
 
-    public void connect(String host,int port){
+    public void connect(String host, int port) {
         this.host = host;
         this.port = port;
 
@@ -31,6 +32,8 @@ public class ChatClient {
         try {
             Bootstrap b = new Bootstrap();
             b.group(workerGroup);
+            //类似IOC,没有强调IOC概念
+            //new NioSocketChannel  实例化class
             b.channel(NioSocketChannel.class);
             b.option(ChannelOption.SO_KEEPALIVE, true);
             b.handler(new ChannelInitializer<SocketChannel>() {
@@ -52,6 +55,8 @@ public class ChatClient {
 
 
     public static void main(String[] args) throws IOException {
-        new ChatClient("cynic").connect("127.0.0.1",8099);
+//        new ChatClient("cynic").connect("127.0.0.1",8099);
+        File file = new File("D:tar_replacefile/patch_file.txt");
+        System.out.println(file.getName());
     }
 }

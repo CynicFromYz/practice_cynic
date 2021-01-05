@@ -15,7 +15,7 @@ public class NioSendClient {
 
     }
 
-    private void sendFile(){
+    private void sendFile() {
 
     }
 }

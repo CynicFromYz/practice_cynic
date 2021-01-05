@@ -13,13 +13,13 @@ import java.nio.channels.SocketChannel;
  */
 public class NioDiscardClient {
     public static void startClient() throws IOException {
-        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1",8099);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", 8099);
         //1.获取通道
         SocketChannel socketChannel = SocketChannel.open(inetSocketAddress);
         //2.切换成非阻塞模式
         socketChannel.configureBlocking(false);
         //3.不断的自旋,等待连接完成,或者做一些其他的操作
-        while (!socketChannel.finishConnect()){
+        while (!socketChannel.finishConnect()) {
             //todo
             System.out.println("建立连接中......");
         }

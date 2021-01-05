@@ -12,7 +12,7 @@ public class ReflectTest {
         reflectTest.sayHello();
     }
 
-    private void sayHello(){
+    private void sayHello() {
         System.out.println("hello world!");
     }
 }

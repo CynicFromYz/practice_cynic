@@ -28,7 +28,7 @@ public class SocketChannelClient {
 
 //        Selector selector
 
-        int key = SelectionKey.OP_ACCEPT|SelectionKey.OP_CONNECT;
+        int key = SelectionKey.OP_ACCEPT | SelectionKey.OP_CONNECT;
 
     }
 }

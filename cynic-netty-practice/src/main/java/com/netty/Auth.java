@@ -17,71 +17,55 @@ public class Auth {
     private String userCode;
     private String password;
 
-    public Auth(String tenantCode, String userCode, String password)
-    {
+    public Auth(String tenantCode, String userCode, String password) {
         this.tenantCode = tenantCode;
         this.userCode = userCode;
         this.password = password;
     }
 
-    public String getAuthCode()
-    {
+    public String getAuthCode() {
         DesUtils des = new DesUtils(DES_KEY);
-        try
-        {
+        try {
             return des.encrypt(String.format("%s|%s|%s", tenantCode, userCode, password));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return "";
         }
     }
 
-    public String getEncryptPassword()
-    {
+    public String getEncryptPassword() {
         DesUtils des = new DesUtils(DES_KEY);
-        try
-        {
+        try {
             return des.encrypt(password);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return "";
         }
     }
 
-    public Header getAuthHeader()
-    {
+    public Header getAuthHeader() {
         return new BasicHeader(AUTH_CODE, getAuthCode());
     }
 
-    public String getTenantCode()
-    {
+    public String getTenantCode() {
         return tenantCode;
     }
 
-    public void setTenantCode(String tenantCode)
-    {
+    public void setTenantCode(String tenantCode) {
         this.tenantCode = tenantCode;
     }
 
-    public String getUserCode()
-    {
+    public String getUserCode() {
         return userCode;
     }
 
-    public void setUserCode(String userCode)
-    {
+    public void setUserCode(String userCode) {
         this.userCode = userCode;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

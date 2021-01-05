@@ -18,7 +18,7 @@ public class NettyServerEchoHandler extends ChannelInboundHandlerAdapter {
         ByteBuf byteBuf = (ByteBuf) msg;
         int length = byteBuf.readableBytes();
         byte[] array = new byte[length];
-        byteBuf.getBytes(byteBuf.readerIndex(),array);
+        byteBuf.getBytes(byteBuf.readerIndex(), array);
         //写回数据,异步任务
         ChannelFuture future = ctx.writeAndFlush(msg);
         future.addListener(new ChannelFutureListener() {

@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class BioClient {
     public static void main(String[] args) throws UnknownHostException, IOException {
-        try{
+        try {
 
 
             //开一条乡村公路
@@ -24,7 +24,7 @@ public class BioClient {
             os.close();
             client.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
 
